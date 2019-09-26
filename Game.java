@@ -2,16 +2,42 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 
+/**
+ * Manages the game state and connects to the Server.
+ */
 public class Game {
 
-    private Multiplayer player; // Manages Socket and the streams
-    private Scanner sc; // Reads user input
+    /**
+     * Manages Socket and the streams.
+     */
+    private Multiplayer player;
 
-    private int[][] board; // Stores the board state
+    /**
+     * Reads user input from command line.
+     */
+    private Scanner sc;
 
-    private boolean first; // Does the player move first
-    private boolean host; // Is the player hosting
+    /**
+     * Stores the game state.
+     */
+    private int[][] board;
 
+    /**
+     * Stores if the player moves first.
+     */
+    private boolean first;
+
+    /**
+     * Stores if the player is X or O.
+     */
+    private boolean host;
+
+    /**
+     * Creates a Game object that manages connection and game state.
+     * Takes in user input to determine whether to host or join and
+     * on what port.
+     * @throws IOException
+     */
     public Game() throws IOException {
 
         this.sc = new Scanner(System.in);
@@ -42,6 +68,11 @@ public class Game {
         this.board = new int[3][3];
     }
 
+    /**
+     * Accepts user input to make the next move.
+     * Checks if move is valid and then sends coordinates to opponent.
+     * @throws IOException
+     */
     public void makeMove() throws IOException {
 
         // Check if game is over
@@ -79,6 +110,11 @@ public class Game {
 
     }
 
+    /**
+     * Waits for opponent to make move.
+     * Blocks until array is read from stream and places piece on board.
+     * @throws IOException
+     */
     public void waitMove() throws IOException {
 
         // Block until coordinates are received
@@ -98,6 +134,10 @@ public class Game {
 
     }
 
+    /**
+     * Checks if the game is over.
+     * @return 0 for no result, 1 for X, 2 for Y, -1 for draw.
+     */
     public int checkGame() {
 
         // Check horizontals
@@ -143,6 +183,9 @@ public class Game {
 
     }
 
+    /**
+     * Prints the current board.
+     */
     public void printBoard() {
 
         System.out.println("");
@@ -170,6 +213,11 @@ public class Game {
 
     }
 
+    /**
+     * Calls printBoard(), makeMove() and waitMove() in correct order.
+     * @return true if game is not over
+     * @throws IOException
+     */
     public boolean play() throws IOException {
 
         if (this.first) {
@@ -193,12 +241,19 @@ public class Game {
         return result;
     }
 
+    /**
+     * Calls close() on the Multiplayer object.
+     * @throws IOException
+     */
     public void end() throws IOException {
 
         this.player.close();
 
     }
 
+    /**
+     * Prints if the player won, lost or drew.
+     */
     public void printResult() {
 
         int res = this.checkGame();
