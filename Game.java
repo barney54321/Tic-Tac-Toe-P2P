@@ -53,9 +53,9 @@ public class Game {
         int x = this.sc.nextInt();
         int y = this.sc.nextInt();
 
-        if (x < 0 || x > 2 || y < 0 || y > 2) {
-            while (x < 0 || x > 2 || y < 0 || y > 2) {
-                System.out.println("INVALID COORDINATES");
+        if (x < 0 || x > 2 || y < 0 || y > 2 || this.board[x][y] != 0) {
+            while (x < 0 || x > 2 || y < 0 || y > 2 || this.board[x][y] != 0) {
+                System.out.println("\nINVALID COORDINATES\n");
                 System.out.print("Enter coordinates: ");
                 x = this.sc.nextInt();
                 y = this.sc.nextInt();
