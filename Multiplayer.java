@@ -13,11 +13,24 @@ public class Multiplayer {
 
     public void writeArray(int[] arr) throws Exception {
 
+        this.dout.writeInt(arr.length);
+        for (int i : arr) {
+            this.dout.writeInt(i);
+        }
+        this.dout.flush();
+
     }
 
     public int[] readArray() throws Exception {
 
-        return null;
+        int length = this.din.readInt();
+        int[] res = new int[length];
+
+        for (int i = 0; i < length; i++) {
+            res[i] = this.din.readInt();
+        }
+
+        return res;
     }
 
     public void close() throws Exception {
