@@ -2,10 +2,21 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 
+/**
+ * The Host subclass of Multiplayer.
+ */
 public class Host extends Multiplayer {
 
-    protected ServerSocket ss; // ServerSocket for hosting the game
+    /**
+     * Hosts the Game.
+     */
+    protected ServerSocket ss;
 
+    /**
+     * Creates a Host at the given port.
+     * @param port the port to host the server on.
+     * @throws IOException
+     */
     public Host(int port) throws IOException {
 
         this.port = port; // Save port
@@ -16,10 +27,13 @@ public class Host extends Multiplayer {
 
     }
 
+    /**
+     * Closes the streams, the Socket and the ServerSocket.
+     * @throws IOException
+     */ 
     @Override
     public void close() throws IOException {
 
-        // Close all the Streams, the Socket and the ServerSocket
         this.din.close();
         this.dout.close();
         this.s.close();
