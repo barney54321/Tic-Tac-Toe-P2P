@@ -50,9 +50,17 @@ public class Game {
 
         System.out.print("\nEnter coordinates: ");
 
-        // TODO: Don't allow invalid coordinates
         int x = this.sc.nextInt();
         int y = this.sc.nextInt();
+
+        if (x < 0 || x > 2 || y < 0 || y > 2) {
+            while (x < 0 || x > 2 || y < 0 || y > 2) {
+                System.out.println("INVALID COORDINATES");
+                System.out.print("Enter coordinates: ");
+                x = this.sc.nextInt();
+                y = this.sc.nextInt();
+            }
+        }
 
         if (this.host) {
             this.board[x][y] = 1;
@@ -81,7 +89,7 @@ public class Game {
 
     }
 
-    public int checkGame() throws Exception {
+    public int checkGame() {
 
         // Check horizontals
         for (int i = 0; i < 3; i++) {
@@ -176,6 +184,20 @@ public class Game {
 
     }
 
+    public void printResult() {
+
+        int res = this.checkGame();
+        if (res == -1) {
+            System.out.println("DRAW");
+        } else if (res == 1 && this.host) {
+            System.out.println("YOU WIN");
+        } else if (res == 2 && !this.host) {
+            System.out.println("YOU WIN");
+        } else {
+            System.out.println("YOU LOSE");
+        }
+    }
+
     public static void main(String[] args) throws Exception {
 
         Game g = new Game();
@@ -184,6 +206,8 @@ public class Game {
         while (play) {
             play = g.play();
         }
+
+        g.printResult();
 
         g.end();
 
