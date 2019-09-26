@@ -4,18 +4,22 @@ import java.net.*;
 
 public class Host extends Multiplayer {
 
-    protected ServerSocket ss;
+    protected ServerSocket ss; // ServerSocket for hosting the game
 
-    public Host(int port) throws Exception {
-        this.port = port;
-        this.ss = new ServerSocket(port);
-        this.s = this.ss.accept();
-        this.din = new DataInputStream(this.s.getInputStream());
-        this.dout = new DataOutputStream(this.s.getOutputStream());
+    public Host(int port) throws IOException {
+
+        this.port = port; // Save port
+        this.ss = new ServerSocket(port); // Create new ServerSocket
+        this.s = this.ss.accept(); // Block until client connects
+        this.din = new DataInputStream(this.s.getInputStream()); // Set up Input stream
+        this.dout = new DataOutputStream(this.s.getOutputStream()); // Set up Output stream
+
     }
 
-    public void close() throws Exception {
+    @Override
+    public void close() throws IOException {
 
+        // Close all the Streams, the Socket and the ServerSocket
         this.din.close();
         this.dout.close();
         this.s.close();

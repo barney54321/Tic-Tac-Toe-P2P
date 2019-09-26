@@ -12,7 +12,7 @@ public class Game {
     private boolean first; // Does the player move first
     private boolean host; // Is the player hosting
 
-    public Game() throws Exception {
+    public Game() throws IOException {
 
         this.sc = new Scanner(System.in);
 
@@ -42,7 +42,7 @@ public class Game {
         this.board = new int[3][3];
     }
 
-    public void makeMove() throws Exception {
+    public void makeMove() throws IOException {
 
         // Check if game is over
         if (this.checkGame() != 0) {
@@ -79,7 +79,7 @@ public class Game {
 
     }
 
-    public void waitMove() throws Exception {
+    public void waitMove() throws IOException {
 
         // Block until coordinates are received
         int[] coordinates = this.player.readArray();
@@ -170,7 +170,7 @@ public class Game {
 
     }
 
-    public boolean play() throws Exception {
+    public boolean play() throws IOException {
 
         if (this.first) {
             this.printBoard();
@@ -193,7 +193,7 @@ public class Game {
         return result;
     }
 
-    public void end() throws Exception {
+    public void end() throws IOException {
 
         this.player.close();
 
@@ -213,7 +213,7 @@ public class Game {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
 
         // Create new Game object
         Game g = new Game();
