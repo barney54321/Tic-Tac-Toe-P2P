@@ -83,7 +83,40 @@ public class Game {
 
     public int checkGame() throws Exception {
 
-        return 0;
+        // Check horizontals
+        for (int i = 0; i < 3; i++) {
+            if (this.board[i][0] == this.board[i][1] && this.board[i][0] == this.board[i][2] && this.board[i][0] != 0) {
+                return this.board[i][0];
+            }
+        }
+
+        // Check verticals
+        for (int i = 0; i < 3; i++) {
+            if (this.board[0][i] == this.board[1][i] && this.board[0][i] == this.board[2][i] && this.board[0][i] != 0) {
+                return this.board[0][i];
+            }
+        }
+
+        // Check diagonals
+        if (this.board[0][0] == this.board[1][1] && this.board[0][0] == this.board[2][2] && this.board[0][0] != 0) {
+            return this.board[0][0];
+        }
+
+        if (this.board[2][0] == this.board[1][1] && this.board[2][0] == this.board[0][2] && this.board[0][2] != 0) {
+            return this.board[0][2];
+        }
+
+        // Check for draw
+        int space = -1;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (this.board[i][j] == 0) {
+                    space = 0;
+                }
+            }
+        }
+
+        return space;
 
     }
 
@@ -153,6 +186,6 @@ public class Game {
         }
 
         g.end();
-        
+
     }
 }
