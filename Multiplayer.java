@@ -2,12 +2,30 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 
-public interface Multiplayer {
+public class Multiplayer {
 
-    public void writeArray(int[] arr);
+    protected int port;
 
-    public int[] readArray();
+    protected Socket s;
 
-    public void close();
+    protected DataInputStream din;
+    protected DataOutputStream dout;
+
+    public void writeArray(int[] arr) throws Exception {
+
+    }
+
+    public int[] readArray() throws Exception {
+
+        return null;
+    }
+
+    public void close() throws Exception {
+
+        this.din.close();
+        this.dout.close();
+        this.s.close();
+
+    }
 
 }

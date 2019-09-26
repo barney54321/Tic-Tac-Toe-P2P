@@ -2,23 +2,14 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 
-public class Client implements Multiplayer {
+public class Client extends Multiplayer {
 
-    private int port;
-
-    public Client(int port) {
-        
+    public Client(int port) throws Exception {
+        this.port = port;
+        this.port = port;
+        this.s = new Socket("localhost", port);
+        this.din = new DataInputStream(this.s.getInputStream());
+        this.dout = new DataOutputStream(this.s.getOutputStream());
     }
-
-    public void writeArray(int[] arr) {
-
-    }
-
-    public int[] readArray() {
-        return null;
-    }
-
-    public void close() {
-
-    }
+    
 }

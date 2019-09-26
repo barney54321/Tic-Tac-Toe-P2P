@@ -2,17 +2,24 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 
-public class Host implements Multiplayer {
+public class Host extends Multiplayer {
 
-    public void writeArray(int[] arr) {
+    protected ServerSocket ss;
 
+    public Host(int port) throws Exception {
+        this.port = port;
+        this.ss = new ServerSocket(port);
+        this.s = this.ss.accept();
+        this.din = new DataInputStream(this.s.getInputStream());
+        this.dout = new DataOutputStream(this.s.getOutputStream());
     }
 
-    public int[] readArray() {
-        return null;
-    }
+    public void close() throws Exception {
 
-    public void close() {
+        this.din.close();
+        this.dout.close();
+        this.s.close();
+        this.ss.close();
 
     }
 }
