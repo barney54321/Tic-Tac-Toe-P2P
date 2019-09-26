@@ -2,12 +2,30 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 
+/**
+ * Abstract superclass that defines methods for Client and Host
+ */
 public abstract class Multiplayer {
 
-    protected int port; // The port used for the Server
-    protected Socket s; // The socket used to connect to server
-    protected DataInputStream din; // Input stream
-    protected DataOutputStream dout; // Output stream
+    /**
+     * The port used for the Server
+     */
+    protected int port;
+
+    /**
+     * The Socket used to connect to the Server
+     */
+    protected Socket s;
+
+    /**
+     * The InputStream connected to the Server
+     */
+    protected DataInputStream din;
+
+    /**
+     * The OutputStream connected to the Server
+     */
+    protected DataOutputStream dout;
 
     /**
      * Writes an int array to the DataOutput Stream.
