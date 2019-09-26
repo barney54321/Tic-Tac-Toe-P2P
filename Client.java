@@ -2,8 +2,16 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 
+/**
+ * The Client subclass of Multiplayer.
+ */
 public class Client extends Multiplayer {
 
+    /**
+     * Creates a Client and connects to the given port.
+     * @param port the port to connect to.
+     * @throws IOException
+     */
     public Client(int port) throws IOException {
 
         this.port = port; // Save the port
